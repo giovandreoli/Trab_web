@@ -1,0 +1,58 @@
+show databases;
+
+create schema Sorveteria;
+use Sorveteria;
+
+show tables;
+
+-- Tabelas
+
+CREATE TABLE Cliente (
+    ClienteID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Endereço VARCHAR(200) NOT NULL,
+    Telefone VARCHAR(20) NOT NULL
+);
+
+-- 
+CREATE TABLE Produto (
+    ProdutoID INT PRIMARY KEY AUTO_INCREMENT,
+    NomeP VARCHAR(200) NOT NULL,
+    Descrição VARCHAR(300),
+    Preço DECIMAL(11,2) NOT NULL
+);
+
+CREATE TABLE Pedido (
+    PedidoID INT PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(100) NOT NULL,
+    Qntd INT NOT NULL,
+    Tipo VARCHAR(45),
+    Adicional VARCHAR(45),
+    ClienteID INT,
+    
+    FOREIGN KEY (ClienteID) REFERENCES Cliente(ClienteID)
+);
+
+CREATE TABLE Pagamento (
+    PagamentoID INT PRIMARY KEY AUTO_INCREMENT,
+    Boleto VARCHAR(200),
+    CartãoCredito INT, 
+    CartãoDabito INT,
+    PIX VARCHAR(200),
+    Endereço int, 
+    
+    FOREIGN KEY (Endereço) REFERENCES Cliente(ClienteID)
+);
+
+
+-- Dados
+
+INSERT INTO Cliente (Nome, Endereço, Telefone) VALUES ('NATHY', 'RUA PERRELLA 55', '11045632');
+INSERT INTO Cliente (Nome, Endereço, Telefone) VALUES ('XOVIANHA', 'RUA CASA DA SOGRA 666', '11 69696969');
+
+INSERT INTO Produto (NomeP, Descrição, Preço) VALUES (1, 'CASQUINHA CHOCO', 'CROCANTE CASQUINHA COM DUAS BOLAS DE CHOCOLATE', '2,25');
+
+INSERT INTO Pedido () VALUE ();
+
+
+SHOW COLUMNS FROM Cliente;
